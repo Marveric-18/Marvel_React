@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=STIX+Two+Math&display=swap");
+
+* {
+  font-family: "STIX Two Math", serif;
+  box-sizing: border-box;
+}
+body {
+  background-color: rgb(58, 55, 55);
+}
+.navbar {
+  margin: 12px 60px;
+  display: inline-block;
+  width: 80%;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  font-size: 25px;
+  margin: 12px 14px;
+}
+a:hover {
+  text-decoration: underline;
+  color: rgb(246, 225, 101);
+  font-size: 28px;
+  cursor: pointer;
+  transition-duration: 0.5s;
+}
+
+header::before {
+  background: url("https://source.unsplash.com/1600x900/?learning,books");
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.5;
+}
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: burlywood;
+  font-size: 30px;
+  padding-top: 30px;
+}
+
+.mastery {
+  font-weight: bolder;
+}
