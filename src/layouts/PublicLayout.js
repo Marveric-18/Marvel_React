@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => createStyles({
         background:"white",
         minHeight: "100px",
         height: "auto",
-        
+        overflowX: "hidden"
     },
 
     

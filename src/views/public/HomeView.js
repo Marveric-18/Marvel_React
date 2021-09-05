@@ -9,6 +9,7 @@ import { Container } from '@material-ui/core';
 //custom import 
 import Home from "../../containers/LandingPage/Home";
 import About from "../../containers/LandingPage/About";
+import ContactUs from "../../containers/LandingPage/ContactUs";
 
 //custom style
 const useStyles = makeStyles(() => createStyles({
@@ -27,12 +28,14 @@ const HomeView = () => {
     
         return(
             <Container className={classes.root} maxWidth="false" disableGutters= "true" >
-                
                 <Container  className={classes.root} maxWidth="xl" disableGutters= "true" >
                     <Home />
                 </Container>
                 <Container className={classes.root} maxWidth="false" disableGutters= "true" >
                     <About />
+                </Container>
+                <Container className={classes.root} maxWidth="false" disableGutters= "true" >
+                    <ContactUs />
                 </Container>
             </Container>
         );

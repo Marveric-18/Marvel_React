@@ -14,9 +14,11 @@ import Typewriter from "typewriter-effect";
 import cindrellaImg from "../../assests/images/cindrellaImg3.jpg";
 import { TitleText } from '../../components/Text/TitleText';
 import { HomeStyle } from "../../components/CustomStyle/HomeStyle";
+import {BasicStyle} from "../../components/CustomStyle/BasicStyle";
 
 const Home = () => {
     const classes = HomeStyle();
+    const basicstyle = BasicStyle();
     // const [checked, setChecked] = React.useState(false);
 
     // const handleChange = () => {
@@ -25,7 +27,7 @@ const Home = () => {
     
     return(
         <React.Fragment>
-                <Container className={classes.devider} maxWidth="false" disableGutters= "true" ></Container>
+                <Container className={basicstyle.devider} maxWidth="false" disableGutters= "true" ></Container>
                 <Container className={classes.contentWrapper} maxWidth="false" disableGutters= "true" >
                     <TitleText variant="h1">
                         Good Shoes Take you good places

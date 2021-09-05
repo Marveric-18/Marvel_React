@@ -2,13 +2,7 @@
 import { makeStyles, createStyles, withStyles } from '@material-ui/core/styles';
 
 export const HomeStyle = makeStyles(() => createStyles({
-    devider : {
-        width: "20vh",
-        display: "block",
-        height: "5px",
-        backgroundColor: "#4b4b4d",
-        margin: "30px auto 30px",
-    },
+    
     contentWrapper : {
         width:"60%",
         margin:"0 auto",
