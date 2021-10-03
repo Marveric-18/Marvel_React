@@ -2,97 +2,131 @@
 import React, { useEffect, useState } from 'react';
 
 //material-ui import
-import { Container, Grid, Paper, Icon } from '@material-ui/core';
-import { loadCSS } from 'fg-loadcss';
+import { Container} from '@material-ui/core';
 import clsx from "clsx";
-import Aos from 'aos';
-import 'aos/dist/aos.css';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
-//extra libraries import
-import Typewriter from "typewriter-effect";
 
 //custom import 
 import { TitleTextXL } from '../../components/Text/TitleText';
-import {BasicStyle, AlignStyle, PaddingStyle, MarginStyle} from "../../components/CustomStyle/BasicStyle";
+import {BasicStyle, PaddingStyle} from "../../components/CustomStyle/BasicStyle";
+import {ContactFormStyle} from "../../components/CustomStyle/ContactFormStyle";
+import {ContactStyle} from "../../components/CustomStyle/ContactStyle";
 
-//material-ui import
-import { makeStyles, createStyles, withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
+const initialFormValues = {
+    fullName: "",
+    email: "",
+    subject:"",
+    message:"",
+    formSubmitted: false,
+    success: false
+}
 
-import bgImage from "../../assests/images/contactusBg.jpg";
-
-export const ContactStyle = makeStyles((theme) => createStyles({
-    root: {
-        textAlign: "center",
+const inputFieldValues = [
+    {
+      name: "fullName",
+      label: "Full Name",
+      id: "my-name"
     },
-    contact_us: {
-        marginTop : "2.5%",
-        backgroundImage: `url(${bgImage})`,
-        backgroundSize: "contain",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center center",
-        width: "100%",
-        height: "120vh",
-        maxWidth: "100%",
-        minHeight: "85vh",
-        textAlign: "center",
-        '&::after': {
-            backgroundAttachment: "fixed",
-            backgroundPosition: "center",
-        }
+    {
+      name: "email",
+      label: "Email",
+      id: "my-email"
     },
-    special: {
-        height: "30vw",
-        width: "100%",
-        padding: "5%",
-        paddingTop: "0%",
-        paddingBottom: "0%",
-        display: 'flex',
-        flexWrap: 'wrap',
-    },
-    divSquare: {
-
-        width: "50%",
-        height: "50%",
-    }
-    
-}));
-
-export const FormStyle = makeStyles((theme) => createStyles({
-    root: {
-        '& > *': {
-          margin: theme.spacing(4),
-          width: '70vh',
-        },
-        '& label.Mui-focused': {
-            color: 'white',
-        },
-        '& label': {
-            color: 'white',
-        },
-        '& .MuiInput-underline:after': {
-            borderBottomColor: 'white',
-        },
-        '& .MuiInput-underline:before': {
-            borderBottomColor: 'white',
-        },
-        '& .MuiInput-root': {
-            color: 'white',
-        },
+    {
+        name: "subject",
+        label: "Subject",
+        id: "my-subject"
       },
-    field : {
-        c : "white"
+    {
+      name: "message",
+      label: "Message",
+      id: "my-message",
+      multiline: true,
+      rows: 5
     }
-    
-}));
+];
+
+const useFormControls = () => {
+    // We'll update "values" as the form updates
+    const [values, setValues] = useState(initialFormValues);
+    // "errors" is used to check the form for errors
+    const any = {}
+    const [errors, setErrors] = useState(any);
+    const validate: any = (fieldValues = values) => {
+      // this function will check if the form values are valid
+        let temp: any = { ...errors }
+
+        if ("fullName" in fieldValues)
+        temp.fullName = fieldValues.fullName ? "" : "This field is required."
+
+        if ("email" in fieldValues) {
+            temp.email = fieldValues.email ? "" : "This field is required."
+            if (fieldValues.email)
+                temp.email = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(fieldValues.email)
+                ? ""
+                : "Email is not valid."
+        }
+
+        if ("message" in fieldValues)
+            temp.message =
+            fieldValues.message ? "" : "This field is required."
+        
+        if ("subject" in fieldValues)
+            temp.subject =
+            fieldValues.subject ? "" : "This field is required."
+
+        setErrors({
+        ...temp
+        });
+    }
+    const handleInputValue = (e: any) => {
+        const { name, value } = e.target;
+        setValues({
+          ...values,
+          [name]: value
+        });
+        validate({ [name]: value });
+    };
+    const handleFormSubmit = async (e) => {
+      // this function will be triggered by the submit event
+        e.preventDefault();
+        if (formIsValid()) {
+            //await postContactForm(values);
+            alert("You've posted your form!")
+        }
+    }
+    const formIsValid = (fieldValues = values) => {
+      // this function will check if the form values and return a boolean value
+        const isValid =
+        fieldValues.fullName &&
+        fieldValues.email &&
+        fieldValues.subject &&
+        fieldValues.message &&
+        Object.values(errors).every((x) => x === "");
+        return isValid;
+    }
+    return {
+        handleInputValue,
+        handleFormSubmit,
+        formIsValid,
+        errors
+    };
+}
+
 
 const ContactUs = () => {
     const classes = ContactStyle();
-    const formstyle = FormStyle();
+    const formstyle = ContactFormStyle();
     const padding = PaddingStyle();
-    const margin = MarginStyle();
-    const alignText = AlignStyle();
     const basicstyle = BasicStyle();
+    const {
+        handleInputValue,
+        handleFormSubmit,
+        formIsValid,
+        errors
+    } = useFormControls();
     return (
         <>
             <Container className={basicstyle.devider} maxWidth="false" disableGutters="true" ></Container>
@@ -107,11 +141,31 @@ const ContactUs = () => {
                         
                     </div>
                     <div className={classes.divSquare}>
-                        <form className={formstyle.root} noValidate autoComplete="off">
-                            <TextField id="standard-basic" label="Email" />
-                            <TextField id="standard-basic" label="Name" />
-                            <TextField id="standard-basic" label="Subject" />
-                            <TextField id="standard-basic" label="Message" />
+                        <form onSubmit={handleFormSubmit} className={formstyle.root} noValidate autoComplete="off">
+                            {/* <TextField id="standard-basic" name="email" label="Email" />
+                            <TextField id="standard-basic" name="fullname" label="Name" />
+                            <TextField id="standard-basic" name="subject" label="Subject" />
+                            <TextField id="standard-basic" name="message" label="Message" multiline /> */}
+                            {inputFieldValues.map((inputFieldValue, index) => {
+                                return (
+                                    <TextField
+                                        key={index}
+                                        onBlur={handleInputValue}
+                                        onChange={handleInputValue}
+                                        name={inputFieldValue.name}
+                                        label={inputFieldValue.label}
+                                        multiline={inputFieldValue.multiline ?? false}
+                                        rows={inputFieldValue.rows ?? 1}
+                                        autoComplete="none"
+                                        {...(errors[inputFieldValue.name] && { error: true, helperText: errors[inputFieldValue.name] })}
+
+                                    />
+                                );
+                            })}
+                            <Button type="submit"
+                                disabled={!formIsValid()}
+                                variant="contained" >Submit
+                            </Button>
                         </form>
                     </div>
                         

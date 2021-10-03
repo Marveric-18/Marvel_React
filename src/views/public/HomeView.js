@@ -10,6 +10,7 @@ import { Container } from '@material-ui/core';
 import Home from "../../containers/LandingPage/Home";
 import About from "../../containers/LandingPage/About";
 import ContactUs from "../../containers/LandingPage/ContactUs";
+import Footer from "../../containers/LandingPage/Footer";
 
 //custom style
 const useStyles = makeStyles(() => createStyles({
@@ -17,16 +18,23 @@ const useStyles = makeStyles(() => createStyles({
         position : "relative",
         background : "white",
         background:"white",
-        minHeight: "100vh",
+        minHeight: "50vh",
         height: "auto",
         marginBottom : "5%",
     }, 
+    root1: {
+        position : "relative",
+        background : "white",
+        minHeight: "50vh",
+        height: "auto",
+    },
   }));
 
 const HomeView = () => {
     const classes = useStyles();
     
         return(
+            <>
             <Container className={classes.root} maxWidth="false" disableGutters= "true" >
                 <Container  className={classes.root} maxWidth="xl" disableGutters= "true" >
                     <Home />
@@ -37,7 +45,12 @@ const HomeView = () => {
                 <Container className={classes.root} maxWidth="false" disableGutters= "true" >
                     <ContactUs />
                 </Container>
+                
             </Container>
+            
+            <Footer />
+            
+            </>
         );
     
 }
