@@ -10,5 +10,7 @@ COPY package-lock.json ./
 RUN npm install
 # add app
 COPY ./ ./
+# expose port 3000
+EXPOSE 3000
 # start app
 CMD ["npm", "start"]
