@@ -7,11 +7,14 @@ import { Container } from '@material-ui/core';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 //custom import
-import {HorizontalSidebar} from '../components/navigration/horizontalNavbar';
+import HorizontalSidebar from '../components/navigration/horizontalNavbar';
 import bgImage from "../assests/images/bgImage1.jpg";
 
 //custom style
-const useStyles = makeStyles((theme) => createStyles({
+const HomeLayoutStyle = makeStyles((theme) => createStyles({
+    outerWrapper : {
+        background : "rgb(58, 55, 55)",
+    },
     header : {
         width : "100%",
         height: "85vh",
@@ -52,21 +55,19 @@ const useStyles = makeStyles((theme) => createStyles({
   }));
 
 const PublicLayout = ({ children, noNavbar, noFooter }) => {
-    const classes = useStyles();
+    const classes = HomeLayoutStyle();
     return(
-    <Container maxWidth="false" disableGutters= "true" >
-        
-        <Container className={classes.header} maxWidth="false" disableGutters= "true">
-            <HorizontalSidebar/>
+        <Container maxWidth="false" disableGutters= "true" >
+            
+            <Container className={classes.header} maxWidth="false" disableGutters= "true">
+                <HorizontalSidebar/>
+            </Container>
+            
+            <Container className={classes.content} maxWidth="false" disableGutters= "true">
+                {children}
+            </Container>
+            
         </Container>
-        
-        <Container className={classes.content} maxWidth="false" disableGutters= "true">
-            {children}
-        </Container>
-        
-        
-        
-    </Container>
 );}
   
 PublicLayout.propTypes = {

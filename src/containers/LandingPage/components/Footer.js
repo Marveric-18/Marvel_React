@@ -6,11 +6,11 @@ import { Container} from '@material-ui/core';
 import clsx from "clsx";
 
 //custom import 
-import { TitleTextXL } from '../../components/Text/TitleText';
-import {BasicStyle, PaddingStyle} from "../../components/CustomStyle/BasicStyle";
-import FooterComponent from '../../components/Footer/FooterComponent';
+import { TitleTextXL } from '../../../components/Text/TitleText';
+import {BasicStyle, PaddingStyle} from "../../../components/CustomStyle/BasicStyle";
+import FooterComponent from '../../../components/Footer/FooterComponent';
 
-const Footer = () => {
+const Footer = React.memo(() => {
     const basicstyle = BasicStyle();
     return (
         <>
@@ -18,6 +18,6 @@ const Footer = () => {
             <FooterComponent></FooterComponent>
         </>
     );
-}
+});
 
 export default Footer;

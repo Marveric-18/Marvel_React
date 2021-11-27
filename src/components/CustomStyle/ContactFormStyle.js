@@ -31,3 +31,13 @@ export const ContactFormStyle = makeStyles((theme) => createStyles({
     }
     
 }));
+
+
+export const FormStyle = makeStyles((theme) => createStyles({
+    root: {
+        
+        '& .MuiFormControl-root' : {
+            width : "50%"
+        }
+    }
+}));

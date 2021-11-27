@@ -3,20 +3,18 @@ import React from 'react';
 
 //material-ui import
 import { Container } from '@material-ui/core';
-import Grow from '@material-ui/core/Grow';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
+
 
 //extra libraries import
 import Typewriter from "typewriter-effect";
 
 //custom import 
-import cindrellaImg from "../../assests/images/cindrellaImg3.jpg";
-import { TitleText } from '../../components/Text/TitleText';
-import { HomeStyle } from "../../components/CustomStyle/HomeStyle";
-import {BasicStyle} from "../../components/CustomStyle/BasicStyle";
+import cindrellaImg from "../../../assests/images/cindrellaImg3.jpg";
+import { TitleText } from '../../../components/Text/TitleText';
+import { HomeStyle } from "../../../components/CustomStyle/HomeStyle";
+import {BasicStyle} from "../../../components/CustomStyle/BasicStyle";
 
-const Home = () => {
+const Home = React.memo(() => {
     const classes = HomeStyle();
     const basicstyle = BasicStyle();
     // const [checked, setChecked] = React.useState(false);
@@ -50,6 +48,6 @@ const Home = () => {
                 </Container>
         </React.Fragment>
     );
-}
+});
 
 export default Home;

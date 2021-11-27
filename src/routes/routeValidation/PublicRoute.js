@@ -6,8 +6,11 @@ export const PublicRoute = ({
     isAuthenticated,
     component : Component,
     ...props
-  }) => (
+  }) => {
+    console.log("ROuuue: ", props)
+    return(
       <Route 
+        ceaser = "marv"
         {...props}
         component = {(props) => {
           return (
@@ -19,7 +22,7 @@ export const PublicRoute = ({
           }
       }
       />
-  )
+  );}
 
 // const getFlag = () => {
 //   const token = useSelector(state => state.token);

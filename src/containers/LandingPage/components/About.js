@@ -10,18 +10,18 @@ import 'aos/dist/aos.css';
 
 
 //custom import 
-import { TitleTextXL } from '../../components/Text/TitleText';
-import {BasicStyle, AlignStyle, PaddingStyle, MarginStyle} from "../../components/CustomStyle/BasicStyle";
-import {AboutStyle} from "../../components/CustomStyle/AboutStyle";
+import { TitleTextXL } from '../../../components/Text/TitleText';
+import {BasicStyle, AlignStyle, PaddingStyle, MarginStyle} from "../../../components/CustomStyle/BasicStyle";
+import {AboutStyle} from "../../../components/CustomStyle/AboutStyle";
 // images 
-import shareButton from "../../assests/svg/shareButton.svg";
-import brandButton from "../../assests/svg/brandButton.svg";
-import designButton from "../../assests/svg/designButton.svg";
-import shoes from "../../assests/images/shoes2.jpg";
-import sell from "../../assests/images/sell.jpg";
+import shareButton from "../../../assests/svg/shareButton.svg";
+import brandButton from "../../../assests/svg/brandButton.svg";
+import designButton from "../../../assests/svg/designButton.svg";
+import shoes from "../../../assests/images/shoes2.jpg";
+import sell from "../../../assests/images/sell.jpg";
 
 
-const About = () => {
+const About = React.memo(() => {
     const classes = AboutStyle();
     const padding = PaddingStyle();
     const margin = MarginStyle();
@@ -130,6 +130,6 @@ const About = () => {
 
         </React.Fragment>
     );
-};
+});
 
 export default About;

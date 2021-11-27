@@ -1,9 +1,10 @@
 //react import
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 //material-ui import
-import { Container } from '@material-ui/core';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
+import {useHistory} from 'react-router-dom'
+import { withRouter } from 'react-router'
 
 //custom import
 import marvlogo1 from "../../assests/images/marvlogo1.png";
@@ -17,7 +18,9 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     marginTop : "20px",
     display : "inline-block",
     width : "100%",
-    float:"left"
+    height : "85vh",
+    float:"left",
+    opacity : "1"
   },
   ul : {
     listStyle : "none",
@@ -54,12 +57,11 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   
 }));
 
-
-function HorizontalSidebar(){
+const HorizontalSidebar = React.memo(({...props}) => {
+    const history = useHistory();
     const classes = useStyles();
     return(
-      
-        
+
           <nav className={classes.navbar}>
             <div className={classes.logoDiv}>
               <strong>
@@ -71,17 +73,17 @@ function HorizontalSidebar(){
             </div>
             <div className={classes.navItems}>
               <ul className = {classes.ul}>
-                  <li><a href="" className={classes.a}>Home</a></li>
+                  <li><a href="" className={classes.a} onClick={() => {props.history.push("/home");}}>Home</a></li>
                   <li><a href="" className={classes.a}>About us</a></li>
                   <li><a href="" className={classes.a}>Contact Us</a></li>
                   <li><a href="" className={classes.a}>Subscription</a></li>
-                  <li><a href="" className={classes.a}>Login</a></li>
+                  <li><a href="" className={classes.a} onClick={() => {props.history.push("/login");}}>Login</a></li>
               </ul>
             </div>
           </nav>
         
     );
-}
+});
 
-export {HorizontalSidebar};
+export default withRouter(HorizontalSidebar);
 
