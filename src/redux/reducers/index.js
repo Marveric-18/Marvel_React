@@ -5,57 +5,57 @@ import { combineReducers } from 'redux';
 
 // //import reducers
 // import toggleSidebar from "./toggleSidebar";
-// import userDetail from "./userDetail";
+import tokenReducer from "../../containers/AuthPage/reducer"
 
-// let tokenInitialState = {
-//     user:{
-//         token : {
-//             activation_token : "",
-//             refresh_token : ""
-//         },
-//         is_admin : false,
-//         is_authenticated : false,
-//         is_staff : false
-//     }
-// }
-
+let initialState = {
+    
+        error : {
+            message : "",
+            code : ""
+        },
+        isLoading : false,
+        isError : false
+    
+}
 
 
-// const token = (state = tokenInitialState, action) => {
+
+const appState = (state = initialState, action) => {
 
     
-//     switch(action.type) {
+    switch(action.type) {
         
-//         case actionType.SET_TOKEN:
-//             return {
-//                 ...state,
-//                 user : {
-//                     ...state.user,
-//                     is_admin : action.payLoad.data.is_admin,
-//                     is_authenticated : action.payLoad.data.is_authenticated,
-//                     is_staff : action.payLoad.data.is_staff,
-//                     token : {
-//                         ...state.user.token,
-//                         activation_token : action.payLoad.data.access,
-//                         refresh_token : action.payLoad.data.refresh
-//                     }
-//                 }
-//             }
-//         case actionType.CREATE_USER:
-//             return state;
-        
-//         case actionType.UNSET_TOKEN:
-//             return tokenInitialState;
+        case "SHOW_LOADER":
+            return {
+                ...state,
+                
+                isLoading : true,
+                error : {
+                    ...state.error,
+                }
+                
+            };
+        case "HIDE_LOADER":
+            return {
+                ...state,
+                
+                isLoading : false,
+                error : {
+                    ...state.error,
+                    
+                }
+            };
             
-//         default:
-//             return state;
+        default:
+            return state;
 
-//     }
+    }
 
-// }
+}
 
 const appReducer = combineReducers({
-
+    tokenReducer,
+    appState
 })
 
 const rootReducer = (state, action) => {

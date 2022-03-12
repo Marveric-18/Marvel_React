@@ -20,6 +20,21 @@ export const MarginStyle = makeStyles((theme) => createStyles({
     },
 }));
 
+export const WidthStyle = makeStyles((theme) => createStyles({
+    root: {
+        width: "100%",
+    },
+    width50: {
+        width: "50%",
+    },
+    width20: {
+        width: "20%",
+    },
+    width80: {
+        width: "80%",
+    },
+}));
+
 export const PaddingStyle = makeStyles((theme) => createStyles({
     root: {
         padding: "auto",
@@ -69,5 +84,16 @@ export const BasicStyle = makeStyles((theme) => createStyles({
         backgroundColor: "#4b4b4d",
         margin: "30px auto 30px",
     },
+    center : {
+        // center content inside Div
+        display: "flex", 
+        alignItems: "center", 
+        justifyContent : "center",
+        flex : "none"
+    },
+    bottom :{
+        //stick div to bottom
+        bottom : "0"
+    }
 
 }));

@@ -1,6 +1,7 @@
 //react import
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useFacebookLogin, FacebookLogin } from 'react-facebook-login';
 
 //material-ui import
 import { Container} from '@material-ui/core';
@@ -55,9 +56,9 @@ const useFormControls = () => {
     // "errors" is used to check the form for errors
     const any = {}
     const [errors, setErrors] = useState(any);
-    const validate: any = (fieldValues = values) => {
+    const validate = (fieldValues = values) => {
       // this function will check if the form values are valid
-        let temp: any = { ...errors }
+        let temp = { ...errors }
 
         if ("fullName" in fieldValues)
         temp.fullName = fieldValues.fullName ? "" : "This field is required."
@@ -82,7 +83,7 @@ const useFormControls = () => {
         ...temp
         });
     }
-    const handleInputValue = (e: any) => {
+    const handleInputValue = (e) => {
         const { name, value } = e.target;
         setValues({
           ...values,
@@ -129,28 +130,9 @@ const ContactUs = React.memo(() => {
         errors
     } = useFormControls();
 
-    // const googleResponse = (e) => {
-    //     console.log(e);
-    //     const CLIENT_ID = "716732479779-lrspuvtr6emort92ljt5lqnd8jk02mqo.apps.googleusercontent.com";
-    //     const CLIENT_SECRET = "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";
-    //     const SCOPE = 'https://www.googleapis.com/auth/userinfo.profile';
-    //     const REDIRECT_URI = "http:localhost:8000/auth/redirect"
+   const googleResponse = (e) => {
 
-    //     const url = `https://accounts.google.com/o/oauth2/v2/auth?scope=${SCOPE}&include_granted_scopes=true&response_type=token&state=state_parameter_passthrough_value&redirect_uri=${REDIRECT_URI}&client_id=${CLIENT_ID}`;
-    //     // axios.get("https://accounts.google.com/o/oauth2/iframerpc?action=issueToken&response_type=token%20id_token&login_hint=AJDLj6JUa8yxXrhHdWRHIV0S13cAfOfibPC1fHn6AOenQMcYpRZq0w5L2qPnTtnoOlHFuJBq4qgoFbfj0oUZ8l9qCD4mcY7wjA&client_id=716732479779-lrspuvtr6emort92ljt5lqnd8jk02mqo.apps.googleusercontent.com&origin=http%3A%2F%2Flocalhost%3A3000&scope=openid%20profile%20email&ss_domain=http%3A%2F%2Flocalhost%3A3000&include_granted_scopes=true&redirect_uri=http%3A%2F%2Flocalhost%3A8000%2Fauth%2Fredirect")
-    //     // .then(res => {
-    //     //     console.log(res)
-    //     // })
-    // }
-
-    // const { signIn, loaded } = useGoogleLogin({
-    //     clientId,
-    //     redirectUri :"http://localhost:8000/auth/redirect",
-    //     uxMode : "redirect",
-    //     isSignedIn: true,
-    //     accessType: 'offline',
-    //   })
-
+   }
     return (
         <>
 
@@ -164,13 +146,13 @@ const ContactUs = React.memo(() => {
                 
                 //uXmode={"redirect"}
                 redirectUri={"postmessage"}
-            />
-                    <FacebookLogin
+            />*/}
+                    {/* <FacebookLogin
                         appId="966557880872685"
                         autoLoad={false}
                         fields="name,email,picture"
                         // redirectUri = "http://localhost:8000/auth/redirect"
-                        callback={googleResponse} /> */}
+                        callback={googleResponse} />  */}
             </Container>
 
             <TitleTextXL variant="h2" className={classes.animatedItem}>

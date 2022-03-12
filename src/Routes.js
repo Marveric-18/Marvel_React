@@ -10,7 +10,8 @@ import withTracker from "./routes/withTracker";
 // import ModalView from "./components/modal/modal";
 
 import AuthView from './views/public/AuthView';
-import HomeView from './views/public/HomeView'
+import HomeView from './views/public/HomeView';
+import Dashboard from './views/private/Dashboard';
 import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom';
 class Routes extends Component {
     constructor(props) {
@@ -44,6 +45,8 @@ class Routes extends Component {
         <Route exact path={"/signup"} component={(props) => <AuthView {...props} pushHistory = {this.props.pushHistory} type="signup"/>}/>
         <Route exact path={"/home"} component={(props) => <HomeView {...props} pushHistory = {this.props.pushHistory} />}/>
         <Route exact path={"/"} component={(props) => <HomeView {...props} pushHistory = {this.props.pushHistory} />}/>
+
+        <Route exact path={"/dashboard"} component={(props) => <Dashboard {...props} pushHistory = {this.props.pushHistory} />}/>
         </div>
          );
     }
